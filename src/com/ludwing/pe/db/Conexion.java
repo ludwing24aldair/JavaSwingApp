@@ -28,7 +28,7 @@ public class Conexion {
                 System.out.println("Error: Conexion Fallida");
             }
             
-             
+            
         } catch(Exception e){
             System.out.println("Error: "+e.getMessage());
         }
