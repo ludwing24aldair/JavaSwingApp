@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 
 public class Conexion {
     private static Connection con = null;
-    private static String usuario = "system";
+    private static String usuario = "usuario_matricula";
     private static String clave = "123456";
     private static String url = "jdbc:oracle:thin:@localhost:1521:xe";
     

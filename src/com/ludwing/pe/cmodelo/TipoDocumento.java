@@ -10,14 +10,14 @@ public class TipoDocumento {
     private int orden;
     private Date fecha;
 
-    public TipoDocumento(int idTipoDocumento, String nombre, String sigla, String estado, int orden, Date fecha) {
-        this.idTipoDocumento = idTipoDocumento;
-        this.nombre = nombre;
-        this.sigla = sigla;
-        this.estado = estado;
-        this.orden = orden;
-        this.fecha = fecha;
-    }
+//    public TipoDocumento(int idTipoDocumento, String nombre, String sigla, String estado, int orden, Date fecha) {
+//        this.idTipoDocumento = idTipoDocumento;
+//        this.nombre = nombre;
+//        this.sigla = sigla;
+//        this.estado = estado;
+//        this.orden = orden;
+//        this.fecha = fecha;
+//    }
 
     public int getIdTipoDocumento() {
         return idTipoDocumento;
