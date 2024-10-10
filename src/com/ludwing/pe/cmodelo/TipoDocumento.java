@@ -9,6 +9,7 @@ public class TipoDocumento {
     private String estado;
     private int orden;
     private Date fecha;
+    public String getFecha;
 
 //    public TipoDocumento(int idTipoDocumento, String nombre, String sigla, String estado, int orden, Date fecha) {
 //        this.idTipoDocumento = idTipoDocumento;
@@ -65,6 +66,10 @@ public class TipoDocumento {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public String getFechaActuliza() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
