@@ -36,7 +36,7 @@ public class TipoDocumentoDao {
             mensaje = "El tipo documento fue creado correctamente";
             
          
-            
+           
             
         } catch (Exception e) {
             mensaje = "Alto! error al crear tipo documento. "+ e.getMessage();
