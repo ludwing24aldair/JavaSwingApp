@@ -35,7 +35,7 @@ public class TipoDocumentoDao {
             ps.close();
             mensaje = "El tipo documento fue creado correctamente";
             
-            
+         
             
             
         } catch (Exception e) {
