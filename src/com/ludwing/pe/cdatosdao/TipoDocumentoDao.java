@@ -4,6 +4,12 @@ import com.ludwing.pe.cmodelo.TipoDocumento;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.Date;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 
 
 public class TipoDocumentoDao {
@@ -60,7 +66,7 @@ public class TipoDocumentoDao {
     public String modificarTipoDocumento(Connection conn, TipoDocumento tipoDocumento){
         PreparedStatement ps = null;
         String sql = "UPDATE TIPO_DOCUMENTO "
-                + " SET NOMBRE=?, SIGLA=?, ESTADO=?, ORDEN=?, FECHA_REGISTRO=?, FECHA_ACTUALIZA=?"
+                + " SET NOMBRE=?, SIGLA=?, ESTADO=?, ORDEN=?"
                 + " WHERE ID_TIPO_DOCUMENTO=?";
         try {
             
@@ -69,9 +75,7 @@ public class TipoDocumentoDao {
             ps.setString(2, tipoDocumento.getSigla());
             ps.setString(3, tipoDocumento.getEstado());
             ps.setInt(4, tipoDocumento.getOrden());
-            ps.setString(5, tipoDocumento.getFecha);
-            ps.setString(6, tipoDocumento.getFechaActuliza());
-            ps.setInt(7, tipoDocumento.getIdTipoDocumento());
+            ps.setInt(5, tipoDocumento.getIdTipoDocumento());
             ps.execute();
             ps.close();
             mensaje = "El tipo documento fue actualizado corectamente";
@@ -82,5 +86,44 @@ public class TipoDocumentoDao {
         return mensaje;
     }
     
-    //........
+    //Cuarto Metodo - Listar Documento.
+    public void listarTipoDocumento(Connection conn, JTable table){
+        DefaultTableModel model;
+        Statement statement = null;
+        ResultSet resulSet = null;
+        
+        String [] columnas = {"ID","NOMBRE","SIGLA","ESTADO","ORDEN"};
+        model = new DefaultTableModel(null,columnas);
+        
+        String sql = "SELECT * FROM TIPO_DOCUMENTO";
+        String[] datosTP = new String[5];
+        
+        try {
+            statement = conn.createStatement();
+            resulSet = statement.executeQuery(sql);
+            
+            
+            while(resulSet.next()){
+                TipoDocumento td = new TipoDocumento();
+                td.setIdTipoDocumento(resulSet.getInt("ID_TIPO_DOCUMENTO"));
+                td.setNombre(resulSet.getString("NOMBRE"));
+                td.setEstado(resulSet.getString("ESTADO"));
+                td.setOrden(resulSet.getInt("ORDEN"));
+                td.setSigla(resulSet.getString("SIGLA"));
+                
+                datosTP[0] = td.getIdTipoDocumento()+"";
+                datosTP[1] = td.getNombre()+"";
+                datosTP[2] = td.getSigla()+"";
+                datosTP[3] = td.getEstado()+"";
+                datosTP[4] = td.getOrden()+"";
+                
+                
+                model.addRow(datosTP);
+            }
+            table.setModel(model);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
 }

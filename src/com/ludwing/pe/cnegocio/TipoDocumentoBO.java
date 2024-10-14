@@ -5,6 +5,7 @@ import com.ludwing.pe.cmodelo.TipoDocumento;
 import com.ludwing.pe.db.Conexion;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.swing.JTable;
 
 
 public class TipoDocumentoBO {
@@ -22,5 +23,42 @@ public class TipoDocumentoBO {
             c.close();
         }
         return mensaje;
+    }
+    
+    public String eliminarTipoDocomento(TipoDocumento tipoDocumento) throws SQLException{
+        Connection c = Conexion.getConnection();
+        try {
+            mensaje = tdd.elimiarTipoDocumento(c, tipoDocumento);
+            c.commit();
+        } catch (Exception e) {
+            c.rollback();
+        } finally {
+            c.close();
+        }
+        return mensaje;
+    }
+    
+    public String modificarTipoDocumento(TipoDocumento tipoDocumento) throws SQLException{
+        Connection c = Conexion.getConnection();
+        try {
+            mensaje = tdd.modificarTipoDocumento(c, tipoDocumento);
+            c.commit();
+        } catch (Exception e) {
+            c.rollback();
+        } finally {
+            c.close();
+        }
+        return mensaje;
+    }
+    
+   public void ListarTipoDocumento(JTable table) throws SQLException{
+       Connection c = Conexion.getConnection();
+        try {
+           tdd.listarTipoDocumento(c, table);
+       } catch (Exception e) {
+            System.out.println("Error: "+e.getMessage());
+       } finally {
+            c.close();
+       }
     }
 }
