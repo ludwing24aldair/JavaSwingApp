@@ -5,6 +5,9 @@
 package com.ludwing.pe.cpresentacion;
 
 import java.awt.BorderLayout;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -92,6 +95,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenu3.add(jMenuItem3);
 
         jMenuItem4.setText("Genero");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem4);
 
         jMenuBar1.add(jMenu3);
@@ -102,13 +110,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
+            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+                .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -132,15 +140,26 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btncalculadoraActionPerformed
 
     private void btnMenuTipoDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuTipoDocumentoActionPerformed
-        jpTipoDocumento tp = new jpTipoDocumento();
-        tp.setSize (1100, 600);
+        jpTipoDocumento tp;
+        try {
+            tp = new jpTipoDocumento();
+            tp.setSize (1100, 600);
         tp.setLocation(0,0);
         principal.removeAll();
         principal.add(tp, BorderLayout.CENTER);
         principal.revalidate();
         principal.revalidate();
         principal.repaint();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ;
+        
     }//GEN-LAST:event_btnMenuTipoDocumentoActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments

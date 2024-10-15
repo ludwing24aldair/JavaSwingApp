@@ -17,6 +17,8 @@ public class jpTipoDocumento extends javax.swing.JPanel {
     TipoDocumentoBO tdbo = new TipoDocumentoBO();
     TipoDocumento td = new TipoDocumento();
     
+    String idTipoDocumento;
+    
     public jpTipoDocumento() throws SQLException {
         initComponents();
         listarTipoDocumento();
@@ -39,7 +41,7 @@ public class jpTipoDocumento extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaTipoDocumento = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -70,6 +72,11 @@ public class jpTipoDocumento extends javax.swing.JPanel {
 
             }
         ));
+        tablaTipoDocumento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaTipoDocumentoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaTipoDocumento);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, -1, -1));
@@ -79,15 +86,15 @@ public class jpTipoDocumento extends javax.swing.JPanel {
         jLabel1.setText("CRUD tipo documento");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setForeground(new java.awt.Color(255, 153, 0));
-        jButton1.setText("Eliminar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(0, 0, 0));
+        btnEliminar.setForeground(new java.awt.Color(255, 153, 0));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 500, -1, -1));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 500, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(0, 0, 0));
         jButton2.setForeground(new java.awt.Color(255, 153, 0));
@@ -240,14 +247,32 @@ public class jpTipoDocumento extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+       try {
+            TipoDocumento tdf = new TipoDocumento();
+            tdf.setIdTipoDocumento(Integer.parseInt(idTipoDocumento));
+            tdbo.eliminarTipoDocumento(tdf);
+            listarTipoDocumento();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error" + e.getMessage());
+        }
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tablaTipoDocumentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTipoDocumentoMouseClicked
+        int seleccion = tablaTipoDocumento.rowAtPoint(evt.getPoint());
+        idTipoDocumento = tablaTipoDocumento.getValueAt(seleccion, 0)+"";
+        txtNombre.setText(tablaTipoDocumento.getValueAt(seleccion, 1)+"");
+        txtSigla.setText(tablaTipoDocumento.getValueAt(seleccion, 2)+"");
+        txtOrden.setText(tablaTipoDocumento.getValueAt(seleccion, 3)+"");
+        txtEstado.setText(tablaTipoDocumento.getValueAt(seleccion, 4)+"");
+        System.out.println(idTipoDocumento);
+    }//GEN-LAST:event_tablaTipoDocumentoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;

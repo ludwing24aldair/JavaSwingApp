@@ -20,7 +20,7 @@ public class Test {
     
     public  void eliminar() throws SQLException, ParseException{
         td.setIdTipoDocumento(2);
-        tdbo.eliminarTipoDocomento(td);
+        tdbo.eliminarTipoDocumento(td);
     }
     
     public  void modificar() throws SQLException, ParseException{

@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/lud_trabajos/JavaSwingApp/src/com/ludwing/pe/cnegocio/TipoDocumentoBO.java</file>
             <file>file:/D:/lud_trabajos/JavaSwingApp/src/com/ludwing/pe/cpresentacion/jpTipoDocumento.java</file>
             <file>file:/D:/lud_trabajos/JavaSwingApp/src/com/ludwing/pe/cpresentacion/JFramePrincipal.java</file>
-            <file>file:/D:/lud_trabajos/JavaSwingApp/src/com/ludwing/pe/cpresentacion/JFrameLogin.java</file>
+            <file>file:/D:/lud_trabajos/JavaSwingApp/src/com/ludwing/pe/cdatosdao/TipoDocumentoDao.java</file>
         </group>
     </open-files>
 </project-private>

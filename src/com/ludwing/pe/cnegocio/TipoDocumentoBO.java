@@ -25,7 +25,7 @@ public class TipoDocumentoBO {
         return mensaje;
     }
     
-    public String eliminarTipoDocomento(TipoDocumento tipoDocumento) throws SQLException{
+    public String eliminarTipoDocumento(TipoDocumento tipoDocumento) throws SQLException{
         Connection c = Conexion.getConnection();
         try {
             mensaje = tdd.elimiarTipoDocumento(c, tipoDocumento);
@@ -53,6 +53,7 @@ public class TipoDocumentoBO {
     
    public void ListarTipoDocumento(JTable table) throws SQLException{
        Connection c = Conexion.getConnection();
+       tdd.listarTipoDocumento(c, table);
         try {
            tdd.listarTipoDocumento(c, table);
        } catch (Exception e) {
