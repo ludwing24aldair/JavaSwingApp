@@ -41,6 +41,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         btnMenuTipoDocumento = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        btnPersonaDocumento = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +103,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem4);
 
+        btnPersonaDocumento.setText("PersonaDocumento");
+        btnPersonaDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPersonaDocumentoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnPersonaDocumento);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -161,6 +170,19 @@ public class JFramePrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void btnPersonaDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonaDocumentoActionPerformed
+        jpPersonaDocumento pd;
+        pd = new jpPersonaDocumento();
+        pd.setSize (1100, 600);
+        pd.setLocation(0,0);
+        principal.removeAll();
+        principal.add(pd, BorderLayout.CENTER);
+        principal.revalidate();
+        principal.revalidate();
+        principal.repaint();
+        ;
+    }//GEN-LAST:event_btnPersonaDocumentoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -198,6 +220,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnMenuTipoDocumento;
+    private javax.swing.JMenuItem btnPersonaDocumento;
     private javax.swing.JMenuItem btncalculadora;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

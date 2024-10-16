@@ -42,7 +42,7 @@ public class jpTipoDocumento extends javax.swing.JPanel {
         tablaTipoDocumento = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
@@ -79,7 +79,7 @@ public class jpTipoDocumento extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaTipoDocumento);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, -1, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -96,15 +96,15 @@ public class jpTipoDocumento extends javax.swing.JPanel {
         });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 500, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setForeground(new java.awt.Color(255, 153, 0));
-        jButton2.setText("Modificar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setBackground(new java.awt.Color(0, 0, 0));
+        btnEditar.setForeground(new java.awt.Color(255, 153, 0));
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 500, -1, -1));
+        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 500, -1, -1));
 
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("NOMBRES:");
@@ -154,7 +154,7 @@ public class jpTipoDocumento extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 490, 20));
 
-        jButton3.setBackground(new java.awt.Color(51, 51, 51));
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 204, 0));
         jButton3.setText("Limpiar");
@@ -165,7 +165,7 @@ public class jpTipoDocumento extends javax.swing.JPanel {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 500, -1, -1));
 
-        btnGuardar.setBackground(new java.awt.Color(51, 51, 51));
+        btnGuardar.setBackground(new java.awt.Color(0, 0, 0));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 204, 0));
         btnGuardar.setText("Guardar");
@@ -196,11 +196,11 @@ public class jpTipoDocumento extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1021, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -226,14 +226,16 @@ public class jpTipoDocumento extends javax.swing.JPanel {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
-            td.setNombre(txtNombre.getText());
-            td.setEstado(txtEstado.getText());
-            td.setOrden(Integer.parseInt(txtOrden.getText()));
-            td.setSigla(txtSigla.getText());
-            tdbo.agregarTipoDocumento(td); 
-            JOptionPane.showMessageDialog(null, ":) se guardo corectamente");
+            if(valida()){
+                td.setNombre(txtNombre.getText());
+                td.setEstado(txtEstado.getText());
+                td.setOrden(Integer.parseInt(txtOrden.getText()));
+                td.setSigla(txtSigla.getText());
+                tdbo.agregarTipoDocumento(td); 
+                JOptionPane.showMessageDialog(null, ":) se guardo correctamente");
             
             listarTipoDocumento();
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: al guardar Tipo documento ");
         }
@@ -243,9 +245,40 @@ public class jpTipoDocumento extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEstadoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    public boolean valida(){
+        if(txtNombre.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Nombre es requerido");
+            return false;
+        }else if(txtSigla.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Sigla es requerida");
+            return false;
+        }else if(txtOrden.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Orden es requerido");
+            return false;
+        }else if(txtEstado.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Estado es requerido");
+            return false;
+        }
+        return true;
+    }
+    
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        try {
+            if(valida()){
+                td.setIdTipoDocumento(Integer.parseInt(idTipoDocumento));
+                td.setNombre(txtNombre.getText());
+                td.setEstado(txtEstado.getText());
+                td.setOrden(Integer.parseInt(txtOrden.getText()));
+                td.setSigla(txtSigla.getText());
+                tdbo.modificarTipoDocumento(td); 
+                listarTipoDocumento();
+                JOptionPane.showMessageDialog(null, ":) se actualizo correctamente");
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: al actualizar Tipo documento ");
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
        try {
@@ -271,9 +304,9 @@ public class jpTipoDocumento extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
